@@ -1,0 +1,243 @@
+package main;
+
+import Bean.*;
+import daoImpl.HibernateUtils;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import java.sql.Date;
+
+public class insert {
+    public static void main(String[]args){
+        long l=System.currentTimeMillis();
+        new insert().InsertUser();
+        new insert().insertPackageService();
+        new insert().insertMonthlyBill();
+        new insert().insertPackageServiceRecord();
+        new insert().insertEveryRecord();
+        long l1=System.currentTimeMillis();
+        System.out.println(l1-l);
+    }
+
+    public void insertEveryRecord(){
+        Session session=HibernateUtils.getSession();
+        Transaction transaction=session.beginTransaction();
+        EveryRecord e1=new EveryRecord();
+        e1.setUid(1);
+        e1.setTypeEnum("ANSWER");
+        e1.setRecordDate(Date.valueOf("2018-10-08"));
+        e1.setInventory(3);
+        e1.setCharge(0);
+        EveryRecord e2=new EveryRecord();
+        e2.setUid(2);
+        e2.setTypeEnum("CALL");
+        e2.setRecordDate(Date.valueOf("2018-10-28"));
+        e2.setInventory(58);
+        e2.setCharge(5.6);
+        EveryRecord e3=new EveryRecord();
+        e3.setUid(1);
+        e3.setTypeEnum("LOCALFLOW");
+        e3.setRecordDate(Date.valueOf("2018-10-03"));
+        e3.setInventory(538);
+        e3.setCharge(114);
+        EveryRecord e4=new EveryRecord();
+        e4.setUid(1);
+        e4.setTypeEnum("DOMESTICFLOW");
+        e4.setRecordDate(Date.valueOf("2018-10-05"));
+        e4.setInventory(210);
+        e4.setCharge(60);
+        EveryRecord e5=new EveryRecord();
+        e5.setUid(2);
+        e5.setTypeEnum("LOCALFLOW");
+        e5.setRecordDate(Date.valueOf("2018-10-15"));
+        e5.setInventory(520);
+        e5.setCharge(60);
+        EveryRecord e6=new EveryRecord();
+        e6.setUid(2);
+        e6.setTypeEnum("DOMESTICFLOW");
+        e6.setRecordDate(Date.valueOf("2018-10-05"));
+        e6.setInventory(20);
+        e6.setCharge(0);
+        EveryRecord e7=new EveryRecord();
+        e7.setUid(3);
+        e7.setTypeEnum("CALL");
+        e7.setRecordDate(Date.valueOf("2018-10-08"));
+        e7.setInventory(582);
+        e7.setCharge(19.2);
+        EveryRecord e8=new EveryRecord();
+        e8.setUid(3);
+        e8.setTypeEnum("CHIT");
+        e8.setRecordDate(Date.valueOf("2018-10-12"));
+        e8.setInventory(1);
+        e8.setCharge(0);
+        EveryRecord e9=new EveryRecord();
+        e9.setUid(1);
+        e9.setTypeEnum("CHIT");
+        e9.setRecordDate(Date.valueOf("2018-10-18"));
+        e9.setInventory(1);
+        e9.setCharge(0.1);
+        EveryRecord e10=new EveryRecord();
+        e10.setUid(3);
+        e10.setTypeEnum("LOCALFLOW");
+        e10.setRecordDate(Date.valueOf("2018-10-20"));
+        e10.setInventory(38);
+        e10.setCharge(76);
+        EveryRecord e11=new EveryRecord();
+        e11.setUid(1);
+        e11.setTypeEnum("MONTHLYCHARGE");
+        e11.setCharge(50);
+        e11.setRecordDate(Date.valueOf("2018-10-01"));
+        EveryRecord e12=new EveryRecord();
+        e12.setUid(2);
+        e12.setTypeEnum("MONTHLYCHARGE");
+        e12.setCharge(50);
+        e12.setRecordDate(Date.valueOf("2018-10-01"));
+        EveryRecord e13=new EveryRecord();
+        e13.setUid(3);
+        e13.setTypeEnum("MONTHLYCHARGE");
+        e13.setCharge(100);
+        e13.setRecordDate(Date.valueOf("2018-10-01"));
+        session.save(e11);
+        session.save(e12);
+        session.save(e13);
+        session.save(e1);
+        session.save(e2);
+        session.save(e3);
+        session.save(e4);
+        session.save(e5);
+        session.save(e6);
+        session.save(e7);
+        session.save(e8);
+        session.save(e9);
+        session.save(e10);
+        transaction.commit();
+        session.close();
+    }
+
+    public void insertMonthlyBill(){
+        Session session=HibernateUtils.getSession();
+        Transaction transaction=session.beginTransaction();
+        MonthlyBill m1=new MonthlyBill();
+        m1.setUid(1);
+        m1.setTotalCallTime(0);
+        m1.setTotalAnswerTime(3);
+        m1.setTotalChits(1);
+        m1.setTotalLocalFlow(538);
+        m1.setTotalDomesticFlow(210);
+        m1.setTotalCharge(224.1);
+        MonthlyBill m2=new MonthlyBill();
+        m2.setUid(2);
+        m2.setTotalCallTime(58);
+        m2.setTotalAnswerTime(0);
+        m2.setTotalChits(0);
+        m2.setTotalLocalFlow(520);
+        m2.setTotalDomesticFlow(20);
+        m2.setTotalCharge(115.6);
+        MonthlyBill m3=new MonthlyBill();
+        m3.setUid(3);
+        m3.setTotalCallTime(582);
+        m3.setTotalAnswerTime(0);
+        m3.setTotalChits(1);
+        m3.setTotalLocalFlow(0);
+        m3.setTotalDomesticFlow(0);
+        m3.setTotalCharge(119.2);
+        session.save(m1);
+        session.save(m2);
+        session.save(m3);
+        transaction.commit();
+        session.close();
+    }
+
+    public void insertPackageServiceRecord(){
+        Session session = HibernateUtils.getSession();
+        Transaction transaction = session.beginTransaction();
+        PackageServiceRecord p1=new PackageServiceRecord();
+        p1.setPid(1);
+        p1.setUid(1);
+        p1.setAvailability(true);
+        p1.setEffiencicy(true);
+        p1.setOrderDate(Date.valueOf("2018-09-02"));
+        PackageServiceRecord p2=new PackageServiceRecord();
+        p2.setPid(2);
+        p2.setUid(2);
+        p2.setAvailability(true);
+        p2.setEffiencicy(true);
+        p2.setOrderDate(Date.valueOf("2018-09-12"));
+        PackageServiceRecord p3=new PackageServiceRecord();
+        p3.setPid(2);
+        p3.setUid(2);
+        p3.setAvailability(false);
+        p3.setEffiencicy(false);
+        p3.setOrderDate(Date.valueOf("2018-09-26"));
+        PackageServiceRecord p4=new PackageServiceRecord();
+        p4.setPid(1);
+        p4.setUid(3);
+        p4.setAvailability(true);
+        p4.setEffiencicy(true);
+        p4.setOrderDate(Date.valueOf("2018-09-12"));
+        PackageServiceRecord p5=new PackageServiceRecord();
+        p5.setPid(2);
+        p5.setUid(3);
+        p5.setAvailability(true);
+        p5.setEffiencicy(false);
+        p5.setOrderDate(Date.valueOf("2018-09-04"));
+        session.save(p1);
+        session.save(p2);
+        session.save(p3);
+        session.save(p4);
+        session.save(p5);
+        transaction.commit();
+        session.close();
+    }
+
+    public void InsertUser(){
+        Session session = HibernateUtils.getSession();
+        Transaction transaction = session.beginTransaction();
+        User user = new User();
+        user.setName("gsy");
+        user.setPhonenumber("13046539662");
+        User user1=new User();
+        user1.setName("lml");
+        user1.setPhonenumber("18345789801");
+        User user2=new User();
+        user2.setName("gyd");
+        user2.setPhonenumber("13012557129");
+        session.save(user);
+        session.save(user1);
+        session.save(user2);
+        transaction.commit();
+        session.close();
+    }
+
+    public void insertPackageService(){
+        Session session = HibernateUtils.getSession();
+        Transaction transaction = session.beginTransaction();
+        PackageService p1=new PackageService();
+        p1.setPname("包月大流量套餐");
+        p1.setMonthlyCharge(50);
+        p1.setTotalCallTime(50);
+        p1.setOverCallPrice(0.7);
+        p1.setTotalChits(0);
+        p1.setOverChitPrice(0);
+        p1.setLocalFlow(500);
+        p1.setOverLocalFlowPrice(3);
+        p1.setDomesticFlow(200);
+        p1.setOverDomesticFlowPrice(6);
+        PackageService p2=new PackageService();
+        p2.setPname("包月大通话套餐");
+        p2.setMonthlyCharge(50);
+        p2.setTotalCallTime(500);
+        p2.setOverCallPrice(0.6);
+        p2.setTotalChits(100);
+        p2.setOverChitPrice(0.2);
+        p2.setLocalFlow(0);
+        p2.setOverLocalFlowPrice(0);
+        p2.setDomesticFlow(0);
+        p2.setOverDomesticFlowPrice(0);
+        session.save(p1);
+        session.save(p2);
+        transaction.commit();
+        session.close();
+    }
+
+}
